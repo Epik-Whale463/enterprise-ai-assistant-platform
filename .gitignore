@@ -156,3 +156,10 @@ docker-compose.production.yml
 DOCKER-SETUP.md
 .dockerignore.fullstack
 build-docker.sh
+backend\migrate_to_mongodb.py
+backend\test_github_ai.py
+backend\test_github_sequential.py
+backend\test_mongodb_connection.py
+backend\test_mongodb_sequential.py
+backend\test_mongodb.py
+backend\test_sequential_thinking.py

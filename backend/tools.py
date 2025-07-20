@@ -444,9 +444,9 @@ def scrapingant_page(url: str) -> str:
 # ------------------------------------------------
 def get_spotify():
     return spotipy.Spotify(auth_manager=SpotifyOAuth(
-        client_id="7cfca3547c38453f84fd4ae6de486006",
-        client_secret="ffb3cad8c7884f21b969d1bbd326ef9a",
-        redirect_uri="https://open.spotify.com/artist/6VuMaDnrHyPL1p4EHjYLi7?si=efeb285a235449b1",
+        client_id=os.environ.get("SPOTIFY_CLIENT_ID"),
+        client_secret=os.environ.get("SPOTIFY_CLIENT_SECRET"),
+        redirect_uri=os.environ.get("SPOTIFY_REDIRECT_URI"),
         scope="user-read-playback-state user-modify-playback-state",
         open_browser=False,
         cache_path=".spotify_cache"
