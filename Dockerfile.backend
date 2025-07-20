@@ -1,0 +1,56 @@
+# Dockerfile.backend - Ultra-optimized Python Flask Backend
+FROM python:3.11-alpine AS builder
+
+# Install build dependencies in one layer
+RUN apk add --no-cache --virtual .build-deps \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    python3-dev \
+    && apk add --no-cache curl
+
+# Set working directory
+WORKDIR /app
+
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Production stage
+FROM python:3.11-alpine AS production
+
+# Install only runtime dependencies
+RUN apk add --no-cache curl && \
+    adduser -D -s /bin/sh app
+
+# Copy Python packages from builder
+COPY --from=builder /root/.local /home/app/.local
+
+# Set working directory and copy application
+WORKDIR /app
+COPY --chown=app:app app_optimized.py ai_core_optimized.py tools.py ./
+COPY --chown=app:app .env ./
+COPY --chown=app:app .env* ./
+
+# Create directories for runtime data
+RUN mkdir -p sequential_memory && \
+    chown -R app:app /app
+
+# Note: Optional directories will be mounted as volumes at runtime
+
+# Switch to non-root user
+USER app
+
+# Add local packages to PATH
+ENV PATH="/home/app/.local/bin:$PATH"
+
+# Expose port
+EXPOSE 5000
+
+# Optimized health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=2 \
+    CMD curl -f http://localhost:5000/health || exit 1
+
+# Run the application
+CMD ["python", "app_optimized.py"]

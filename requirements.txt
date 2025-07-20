@@ -1,0 +1,68 @@
+# Core Flask dependencies
+Flask==3.0.3
+Flask-CORS==4.0.0
+Flask-Caching==2.1.0
+
+# AI/ML dependencies
+langchain==0.3.26
+langchain-ollama==0.3.5
+langgraph==0.5.3
+langchain-core==0.3.69
+langchain-community==0.3.26
+
+# GitHub AI Inference API
+azure-core==1.30.1
+azure-ai-inference
+
+# Environment and configuration
+python-dotenv==1.0.1
+
+# HTTP requests and web scraping
+requests==2.32.3
+httpx==0.27.0
+
+# Search and information retrieval
+duckduckgo-search==6.3.5
+ddgs==9.3.1
+wikipedia==1.4.0
+
+# Spotify integration
+spotipy==2.24.0
+
+# Google services (for image generation)
+google-generativeai==0.8.3
+google-genai==1.2.0
+
+# Sarvam AI (Indian language models)
+sarvamai==0.1.14
+
+# Data processing and utilities
+typing-extensions==4.12.2
+numpy==2.2.6
+
+# File processing dependencies
+pypdf==4.0.1
+PyPDF2==3.0.1
+python-docx==1.1.2
+
+# Web scraping (optional but used in your tools)
+scrapingant-client==2.1.0
+beautifulsoup4==4.13.4
+
+# Performance and async
+asyncio-throttle==1.0.2
+
+# Sentence transformers for enhanced reasoning (optional but recommended)
+sentence-transformers==5.0.0
+
+# Redis for caching (if you want persistent caching)
+redis==5.0.1
+
+# MongoDB database
+pymongo==4.6.1
+dnspython==2.4.2
+
+# Essential Flask utilities
+Werkzeug==3.0.3
+
+# Note: uuid, pathlib, textwrap, base64, json, os, time, math, re are built-in Python modules

@@ -1,0 +1,49 @@
+.mentionHighlight {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.mentionContainer {
+    position: relative;
+}
+
+.mentionDropdown {
+    position: absolute;
+    z-index: 50;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    width: 250px;
+}
+
+.mentionItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.mentionItem:hover {
+    background-color: var(--accent);
+}
+
+.mentionItemSelected {
+    background-color: var(--accent);
+}
+
+.mentionIcon {
+    color: var(--primary);
+}
+
+.mentionName {
+    font-weight: 500;
+}
+
+.mentionDescription {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
