@@ -146,3 +146,13 @@ frontend\.next
 .env
 .env.test
 .parcel-cache
+sequential_memory/
+
+Dockerfile.backend
+Dockerfile.fullstack
+docker-compose.fullstack.yml
+docker-compose.optimized.yml
+docker-compose.production.yml
+DOCKER-SETUP.md
+.dockerignore.fullstack
+build-docker.sh

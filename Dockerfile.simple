@@ -1,0 +1,47 @@
+# Simple Dockerfile - Everything in one container
+FROM python:3.11
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# Set working directory
+WORKDIR /app
+
+# Copy Python requirements first (for better caching)
+COPY backend/requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy frontend package files first (for better caching)
+COPY frontend/package*.json ./frontend/
+WORKDIR /app/frontend
+RUN npm install
+
+# Copy frontend source and build
+COPY frontend/ .
+RUN npm run build
+
+# Copy backend files
+WORKDIR /app
+COPY backend/ ./backend/
+COPY .env .
+COPY .spotify_cache .
+
+# Go back to root
+WORKDIR /app
+
+# Create logs directory
+RUN mkdir -p logs sequential_memory
+
+# Expose both ports
+EXPOSE 3000 5000
+
+# Create startup script
+RUN echo '#!/bin/bash' > start.sh && \
+    echo 'cd /app/frontend && npm start &' >> start.sh && \
+    echo 'cd /app/backend && python app_optimized.py &' >> start.sh && \
+    echo 'wait' >> start.sh && \
+    chmod +x start.sh
+
+# Start both services
+CMD ["./start.sh"]

@@ -863,7 +863,7 @@ const ChatInterface = memo<ChatInterfaceProps>(({
                             onChange={(value) => handleInputChange({ target: { value } } as React.ChangeEvent<HTMLTextAreaElement>)}
                             onKeyDown={handleKeyPress}
                             onToolSelect={(toolName) => handleToolSelect(`@${toolName} `)}
-                            placeholder="Reply to AI Assistant..."
+                            placeholder="Use OpenAI models for best perfomance..."
                             className="min-h-[50px] max-h-[200px] resize-none rounded-t-2xl border-b-0 glass-textarea-enhanced px-4 py-3 pr-20 text-sm placeholder:text-white/60 focus:ring-0 transition-all duration-300 relative z-10"
                             disabled={isLoading}
                         />
@@ -1159,7 +1159,7 @@ export function ModernChat({ onSendMessage, className, initialSessionId }: Moder
         setSaveError(null)
 
         try {
-            const response = await fetch(`http://localhost:5000/sessions/${sessionId}/messages`, {
+            const response = await fetch(`/api/sessions/${sessionId}/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1267,7 +1267,7 @@ export function ModernChat({ onSendMessage, className, initialSessionId }: Moder
 
     const defaultSendMessage = useCallback(async (message: string, model: string) => {
         // Default implementation - replace with your API call
-        const response = await fetch('http://localhost:5000/chat', {
+        const response = await fetch('/api/chat', {
             method: 'POST',
             headers: authService.getAuthHeaders(),
             body: JSON.stringify({

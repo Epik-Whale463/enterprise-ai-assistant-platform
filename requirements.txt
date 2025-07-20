@@ -45,17 +45,15 @@ pypdf==4.0.1
 PyPDF2==3.0.1
 python-docx==1.1.2
 
-# Web scraping (optional but used in your tools)
+# Web scraping 
 scrapingant-client==2.1.0
 beautifulsoup4==4.13.4
 
 # Performance and async
 asyncio-throttle==1.0.2
 
-# Sentence transformers for enhanced reasoning (optional but recommended)
-sentence-transformers==5.0.0
 
-# Redis for caching (if you want persistent caching)
+# Redis for caching 
 redis==5.0.1
 
 # MongoDB database
@@ -64,5 +62,3 @@ dnspython==2.4.2
 
 # Essential Flask utilities
 Werkzeug==3.0.3
-
-# Note: uuid, pathlib, textwrap, base64, json, os, time, math, re are built-in Python modules
